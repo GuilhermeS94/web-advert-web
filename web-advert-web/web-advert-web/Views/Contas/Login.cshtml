@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+@model web_advert_web.Models.Contas.Login;
+
+<div class="row">
+    <div class="col-md-4">
+        <h4>Entrar</h4>
+        <h5>
+            <a asp-controller="Contas" asp-action="Cadastrar">
+                Se vc nao tem conta, registrar-se
+            </a>
+        </h5>
+        <hr />
+        <form method="post" asp-controller="Contas" asp-action="Login">
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Senha"></label>
+                <input asp-for="Senha" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="LembrarMe"></label>
+                    <input asp-for="LembrarMe" class="form-control" />
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-default">Entrar</button>
+        </form>
+    </div>
+</div>

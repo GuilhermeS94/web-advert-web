@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <RootNamespace>web_advert_web</RootNamespace>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\Contas\" />
+    <Folder Include="Views\Contas\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Amazon.AspNetCore.Identity.Cognito" Version="2.1.0" />
+    <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.1.0" />
+  </ItemGroup>
+</Project>

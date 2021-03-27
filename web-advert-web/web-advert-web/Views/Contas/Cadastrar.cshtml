@@ -1,0 +1,34 @@
+﻿@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+@model web_advert_web.Models.Contas.Cadastrar;
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-controller="Contas" asp-action="Cadastrar">
+            <h4>Criar um novo usuario</h4>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Senha"></label>
+                <input asp-for="Senha" class="form-control" />
+                <span asp-validation-for="Senha" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ConfirmarSenha"></label>
+                <input asp-for="ConfirmarSenha" class="form-control" />
+                <span asp-validation-for="ConfirmarSenha" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-default">Salvar</button>
+        </form>
+    </div>
+</div>
