@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using web_advert_web.Services;
 
 namespace web_advert_web
 {
@@ -41,6 +42,8 @@ namespace web_advert_web
             services.ConfigureExternalCookie(opcoes => {
                 opcoes.LoginPath = "Contas/Login";
             });
+
+            services.AddTransient<IFileUploader, S3FileUploader>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

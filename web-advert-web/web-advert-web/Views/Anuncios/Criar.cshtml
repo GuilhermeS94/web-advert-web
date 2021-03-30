@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Criar Anuncio";
+}
+
+@model web_advert_web.Models.Anuncios.CriarAnuncioView;
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" asp-controller="Anuncio" asp-action="Criar" enctype="multipart/form-data">
+            <h4>Criar um novo anuncio</h4>
+            <div asp-validation-summary="All" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Titulo"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Descricao"></label>
+                <input asp-for="Descricao" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Preco"></label>
+                <input asp-for="Preco" class="form-control" />
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Arquivo:</label>
+                <input type="file" name="arquivo" class="form-control" />
+            </div>
+
+            <button type="submit" class="btn btn-default">Salvar</button>
+        </form>
+    </div>
+</div>

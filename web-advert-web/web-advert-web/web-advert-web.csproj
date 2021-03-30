@@ -12,9 +12,14 @@
   <ItemGroup>
     <Folder Include="Models\Contas\" />
     <Folder Include="Views\Contas\" />
+    <Folder Include="Services\" />
+    <Folder Include="Models\Anuncios\" />
+    <Folder Include="Views\Anuncios\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Amazon.AspNetCore.Identity.Cognito" Version="2.1.0" />
     <PackageReference Include="Amazon.Extensions.CognitoAuthentication" Version="2.1.0" />
+    <PackageReference Include="AWSSDK.Core" Version="3.7.0.3" />
+    <PackageReference Include="AWSSDK.S3" Version="3.7.0.3" />
   </ItemGroup>
 </Project>
