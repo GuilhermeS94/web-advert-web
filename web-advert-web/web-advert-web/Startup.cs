@@ -10,7 +10,12 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using web_advert_web.ClientServices;
 using web_advert_web.Services;
+using AutoMapper;
+using Polly;
+using System.Net.Http;
+using Polly.Extensions.Http;
 
 namespace web_advert_web
 {
@@ -43,7 +48,24 @@ namespace web_advert_web
                 opcoes.LoginPath = "Contas/Login";
             });
 
+            services.AddAutoMapper(typeof(Startup));
             services.AddTransient<IFileUploader, S3FileUploader>();
+            services.AddHttpClient<IAdvertClient, AdvertClient>()
+                .AddPolicyHandler(GetRetryPolicy())
+                .AddPolicyHandler(GetCircuitBreakerPolicy());
+        }
+
+        private IAsyncPolicy<HttpResponseMessage> GetCircuitBreakerPolicy()
+        {
+            return HttpPolicyExtensions.HandleTransientHttpError()
+                .CircuitBreakerAsync(3, TimeSpan.FromSeconds(30));
+        }
+
+        private IAsyncPolicy<HttpResponseMessage> GetRetryPolicy()
+        {
+            return HttpPolicyExtensions.HandleTransientHttpError()
+                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
+                .WaitAndRetryAsync(5, tentarAcada => TimeSpan.FromSeconds(Math.Pow(2, tentarAcada)));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
